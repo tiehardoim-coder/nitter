@@ -479,7 +479,7 @@ proc parseCard(js: JsonNode; urls: JsonNode): Card =
     result.url = getPicUrl(result.image)
 
 proc parseTweet(js: JsonNode; jsCard: JsonNode = newJNull();
-                replyId: int64 = 0): Tweet =
+                replyId: int64 = 0; hasArticle = false): Tweet =
   if js.isNull: return Tweet()
 
   let time =
@@ -547,7 +547,7 @@ proc parseTweet(js: JsonNode; jsCard: JsonNode = newJNull();
     elif name.len > 0 and jsCard{"binding_values"}.notNull:
       result.card = some parseCard(jsCard, js{"entities", "urls"})
 
-  result.expandTweetEntities(js)
+  result.expandTweetEntities(js, hasArticle)
   parseLegacyMediaEntities(js, result)
 
   with jsWithheld, js{"withheld_in_countries"}:
@@ -605,6 +605,8 @@ proc parseGraphTweet*(js: JsonNode): Tweet =
   with restId, js{"reply_to_results", "rest_id"}:
     replyId = restId.getId
 
+  let hasArticle = js{"article", "article_results", "result", "title"}.getStr.len > 0
+
   if "details" in js:
     result = Tweet(
       id: js{"rest_id"}.getId,
@@ -639,7 +641,6 @@ proc parseGraphTweet*(js: JsonNode): Tweet =
     if result.attribution.isNone:
       parseLegacyMediaEntities(js{"legacy"}, result)
 
-    let hasArticle = js{"article", "article_results", "result", "title"}.getStr.len > 0
     result.expandTweetEntitiesV2(js, hasArticle)
 
     # Strip video source URL from text (for videos from other tweets)
@@ -653,7 +654,7 @@ proc parseGraphTweet*(js: JsonNode): Tweet =
               result.text = result.text[0 ..< idx].strip()
             break
   else:
-    result = parseTweet(js{"legacy"}, jsCard, replyId)
+    result = parseTweet(js{"legacy"}, jsCard, replyId, hasArticle)
     result.id = js{"rest_id"}.getId
 
   with artNode, js{"article", "article_results", "result"}:
@@ -662,7 +663,10 @@ proc parseGraphTweet*(js: JsonNode): Tweet =
       result.articlePreview = some ArticlePreview(
         title: artTitle,
         previewText: artNode{"preview_text"}.getStr,
-        coverImage: artNode{"cover_media_results", "result", "media_info", "original_img_url"}.getImageStr,
+        coverImage: select(
+          artNode{"cover_media_results", "result", "media_info", "original_img_url"},
+          artNode{"cover_media", "media_info", "original_img_url"}
+        ).getImageStr,
         tweetId: result.id
       )
 
@@ -749,6 +753,10 @@ proc parseGraphThread(js: JsonNode): tuple[thread: Chain; self: bool] =
 
 proc parseGraphTweetResult*(js: JsonNode): Tweet =
   with tweet, js{"data", "tweet_result", "result"}:
+    result = parseGraphTweet(tweet)
+
+proc parseTweetByRestId*(js: JsonNode): Tweet =
+  with tweet, js{"data", "tweetResult", "result"}:
     result = parseGraphTweet(tweet)
 
 proc parseGraphTweetResults*(js: JsonNode): seq[Tweet] =

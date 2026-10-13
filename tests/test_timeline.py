@@ -84,3 +84,31 @@ class TweetTest(BaseTestCase):
         #for i, url in enumerate(images):
             #img = self.get_attribute(Timeline.photo_rail + f' a:nth-child({i + 1}) img', 'src')
             #self.assertIn(url, img)
+
+
+class ArticlesTabTest(BaseTestCase):
+    def test_articles_tab_on_profile(self):
+        self.open_nitter('satyanadella')
+        self.assert_element_present('.tab .tab-item a[href="/satyanadella/articles"]')
+
+    def test_articles_timeline(self):
+        self.open_nitter('satyanadella/articles')
+        self.assert_text('Articles', '.tab .tab-item.active a')
+        self.assert_element_present('.timeline .article-card')
+        self.assert_element_present('.timeline .article-card a[href^="/i/article/"]')
+
+    def test_articles_card_cover_and_no_raw_link(self):
+        self.open_nitter('jack/articles')
+        self.assert_element_present('.timeline .article-card .card-image img')
+        # the article link tweet text is redundant with the card and is stripped
+        self.assert_element_absent('.timeline .tweet-content a[href*="x.com/i/article"]')
+
+    def test_articles_empty(self):
+        self.open_nitter('mobile_test/articles')
+        self.assert_text('No items found', Timeline.none)
+
+    def test_articles_multi_user_unsupported(self):
+        self.open_nitter('jack,satyanadella')
+        self.assert_element_absent('.tab .tab-item a[href$="/articles"]')
+        self.open_nitter('jack,satyanadella/articles')
+        self.assert_text('Page not found')

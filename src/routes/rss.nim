@@ -106,24 +106,16 @@ proc createRssRouter*(cfg: Config) =
 
     get "/@name/@tab/rss":
       cond '.' notin @"name"
-      cond @"tab" in ["with_replies", "media", "search"]
-      let rssEnabled = case @"tab"
-        of "with_replies": cfg.enableRSSUserReplies
-        of "media": cfg.enableRSSUserMedia
-        of "search": cfg.enableRSSSearch
-        else: false
-      if not rssEnabled:
+      cond @"tab" in ["with_replies", "media", "search", "articles"]
+      # articles can't be approximated by search, so multi-user is unsupported
+      cond not (@"tab" == "articles" and ',' in @"name")
+      if not cfg.tabRssEnabled(@"tab"):
         resp Http403, showError("RSS feed is disabled", cfg)
       let
         prefs = requestPrefs()
         name = @"name"
         tab = @"tab"
-        query =
-          case tab
-          of "with_replies": getReplyQuery(name)
-          of "media": getMediaQuery(name)
-          of "search": initQuery(params(request), name=name)
-          else: Query(fromUser: @[name])
+        query = request.getQuery(tab, name, prefs)
 
       let searchKey = if tab != "search": ""
                       else: ":" & $hash(genQueryUrl(query))

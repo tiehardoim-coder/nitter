@@ -36,6 +36,9 @@ proc renderProfileTabs*(query: Query; username: string): VNode =
       a(href=(link & "/with_replies")): text "Tweets & Replies"
     li(class=query.getTabClass(media)):
       a(href=(link & "/media")): text "Media"
+    if query.fromUser.len == 1:
+      li(class=query.getTabClass(QueryKind.articles)):
+        a(href=(link & "/articles")): text "Articles"
     li(class=query.getTabClass(tweets)):
       a(href=(link & "/search")): text "Search"
 
