@@ -29,6 +29,10 @@ proc initQuery*(pms: Table[string, string]; name=""): Query =
     minLikes: validateNumber(@"min_faves")
   )
 
+  # articles is an internal tab kind, not a valid search filter
+  if result.kind == QueryKind.articles:
+    result.kind = tweets
+
   if name.len > 0:
     result.fromUser = name.split(",")
 
@@ -38,6 +42,12 @@ proc getMediaQuery*(name: string): Query =
     filters: @["twimg", "native_video"],
     fromUser: @[name],
     sep: "OR"
+  )
+
+proc getArticlesQuery*(name: string): Query =
+  Query(
+    kind: QueryKind.articles,
+    fromUser: @[name]
   )
 
 proc getReplyQuery*(name: string): Query =

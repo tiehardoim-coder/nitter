@@ -11,7 +11,7 @@ type
   BadClientError* = object of CatchableError
 
   TimelineKind* {.pure.} = enum
-    tweets, replies, media
+    tweets, replies, media, articles
 
   ApiUrl* = object
     endpoint*: string
@@ -174,7 +174,8 @@ type
     variants*: seq[VideoVariant]
 
   QueryKind* = enum
-    posts, replies, media, users, tweets, userList, followers, following, lists, top
+    posts, replies, media, users, tweets, userList, followers, following, lists, top,
+    articles
 
   RankingMode* = enum
     Relevance, Recency, Likes
@@ -431,6 +432,7 @@ type
     enableRSSUserTweets*: bool
     enableRSSUserReplies*: bool
     enableRSSUserMedia*: bool
+    enableRSSUserArticles*: bool
     enableRSSSearch*: bool
     enableRSSList*: bool
     enableDebug*: bool

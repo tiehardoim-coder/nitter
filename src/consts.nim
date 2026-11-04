@@ -7,43 +7,45 @@ const
   bearerToken* = "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
   bearerToken2* = "Bearer AAAAAAAAAAAAAAAAAAAAAFXzAwAAAAAAMHCxpeSDG1gLNLghVe8d74hl6k4%3DRUMF4xAQLsbeBhTSRrCiQpJtxoGWeyHrDb5te2jpGskWDFW82F"
 
-  graphUser* = "IGgvgiOx4QZndDHuD3x9TQ/UserByScreenName"
+  graphUser* = "Gb-d6r0vxPOADdG62OEBpQ/UserByScreenName"
   graphUserV2* = "-ZzAG_Bckx16LMbEvHC3lg/UserResultByScreenNameQuery"
-  graphUserById* = "-DAaa9jPxPswYeI2fZ9rug/UserResultByIdQuery"
+  graphUserById* = "xvmVfRLmnr1alc5f2dib0Q/UserByRestId"
   graphUserTweetsV2* = "LE3eTyeqhBh2g-fX85O2eQ/UserWithProfileTweetsQueryV2"
   graphUserTweetsAndRepliesV2* = "AcYHjc_YAx-9_rKWdMsKvA/UserWithProfileTweetsAndRepliesQueryV2"
-  graphUserTweets* = "PNd0vlufvrcIwrAnBYKE9g/UserTweets"
-  graphUserTweetsAndReplies* = "EqtpEwt0CoQXmDfq5DKH0A/UserTweetsAndReplies"
-  graphUserMedia* = "g_rGPF0fLON-M9cyVjXuzA/UserMedia"
+  graphUserTweets* = "SXVCYB8XHSS25nzIljNtZA/UserTweets"
+  graphUserTweetsAndReplies* = "qUpkZU6eN8MbtQb7rC_pYg/UserTweetsAndReplies"
+  graphUserMedia* = "VyudDWQnr9vJNw7GasFz2g/UserMedia"
   graphUserMediaV2* = "WK111rbR0vM0ZX4lyZCYjw/MediaTimelineV2"
+  graphUserArticles* = "ZmMjUyrTpwYfTGAdylEyMw/UserArticlesTweets"
+  graphUserArticlesV2* = "PsGixN38UZz2RheyayNB5Q/UserProfileArticlesTimelineQuery"
   graphTweet* = "OZMbEnEa96AN8Pq6HyTWdw/ConversationTimeline"
-  graphTweetDetail* = "6uCvnic3m5reVuehkvHa3w/TweetDetail"
+  graphTweetDetail* = "XMOz5h24KAZ86qKffKTLdQ/TweetDetail"
   graphTweetResult* = "xYOrBQoTlfKJJPsX76MZEw/TweetResultByIdQuery"
-  graphTweetEditHistory* = "MGElmrYILE8wUfI8GorUYA/TweetEditHistory"
-  graphSearchTimeline* = "-TFXKoMnMTKdEXcCn-eahw/SearchTimeline"
+  graphTweetEditHistory* = "1izbuOcH_QpuMcyCxOXkAg/TweetEditHistory"
+  graphSearchTimeline* = "hyPfJYJ_XAtDYoslQc-Rgg/SearchTimeline"
 
-  graphListById* = "t9AbdyHaJVfjL9jsODwgpQ/ListByRestId"
-  graphListBySlug* = "LDQpQ89B5ipR8izCKrWU0g/ListBySlug"
-  graphListMembers* = "EM7YRaM3gCnzDESmchA7RA/ListMembers"
+  graphListById* = "niz0TtOxL2zIcbq6_NQiNw/ListByRestId"
+  graphListBySlug* = "RqkWNDQpOntlxNtJa4RIoQ/ListBySlug"
+  graphListMembers* = "8rYmkvWQe9jRRZdy_-vkGA/ListMembers"
   graphListTweets* = "0QJtcuMzVywHGAWD6Dtjlw/ListTimeline"
-  graphAboutAccount* = "zUnx-DLN9dkwOkNhTLySjg/AboutAccountQuery"
+  graphAboutAccount* = "TzOG2twZEfhr9KmClvVVqA/AboutAccountQuery"
 
   graphCommunity* = "-ElI1vg3dYbttVMhBhGdLw/CommunityQuery"
-  graphCommunityTweets* = "Mvs5UOOEkpXVMDZtUcxR-Q/CommunityTweetsTimeline"
-  graphCommunityMedia* = "Bt9XYnY7D3OcmZE5lhdx-A/CommunityMediaTimeline"
-  graphCommunityMembers* = "WSbJGJjZaVasSj9bnqSZSA/membersSliceTimeline_Query"
-  graphCommunityModerators* = "GBMT3GOWy5dYsYC4XJfvow/moderatorsSliceTimeline_Query"
-  graphCommunityHashtags* = "40DyrMxfCknGuZwE-keW_Q/CommunityHashtagsTimeline"
+  graphCommunityTweets* = "EwftYyqQemkckQ0wzGM6uw/CommunityTweetsTimeline"
+  graphCommunityMedia* = "ESJtwnI_apuGesbJncpc0Q/CommunityMediaTimeline"
+  graphCommunityMembers* = "woAp_YdzAdqnWDrqLTNpAw/membersSliceTimeline_Query"
+  graphCommunityModerators* = "0oYT9GRiWUhrz5xoqFE9uw/moderatorsSliceTimeline_Query"
+  graphCommunityHashtags* = "D5EqomOIWeJnSkMhL-FLew/CommunityHashtagsTimeline"
 
-  graphTweetResultByRestId* = "qtXMy1p5Y62uCskc_NUPJw/TweetResultByRestId"
-  graphTweetResultsByRestIds* = "Sc9EUQTZNEH-wzegn-nHvQ/TweetResultsByRestIds"
+  graphTweetResultByRestId* = "GZsN2Pc4knAoit6pXa4HSA/TweetResultByRestId"
+  graphTweetResultsByRestIds* = "Pho4sg8jLcrVlMeclMayrg/TweetResultsByRestIds"
 
-  graphBroadcast* = "FJLCzpXCLPM1jUZqmM7oEA/BroadcastQuery"
-  graphAudioSpace* = "rWRLsOhNJ2xjpI1tREYurQ/AudioSpaceById"
+  graphBroadcast* = "RG6wSogandh6WPIzxW9aag/BroadcastQuery"
+  graphAudioSpace* = "Bh0L6azTQoMs9rJKeCF4wQ/AudioSpaceById"
   restLiveStream* = "1.1/live_video_stream/status/"
 
-  graphFollowers* = "9jsVJ9l2uXUIKslHvJqIhw/Followers"
-  graphFollowing* = "OLm4oHZBfqWx8jbcEhWoFw/Following"
+  graphFollowers* = "JNyQdTISpzCkj_1fqxDvFg/Followers"
+  graphFollowing* = "qGZZDF3mp91q7X22s3HxpA/Following"
 
   gqlFeatures* = """{
   "rweb_video_screen_enabled": false,
@@ -148,6 +150,13 @@ const
   "withVoice": true
 }""".replace(" ", "").replace("\n", "")
 
+  userArticlesVars* = """{
+  "userId": "$1", $2
+  "count": 20,
+  "includePromotedContent": false,
+  "withVoice": true
+}""".replace(" ", "").replace("\n", "")
+
   articleVars* = """{
   "tweetId": "$1",
   "includePromotedContent": false,
@@ -165,6 +174,19 @@ const
 }""".replace(" ", "").replace("\n", "")
 
   articleFieldToggles* = """{"withArticleRichContentState":true,"withArticlePlainText":false,"withArticleSummaryText":true,"withArticleVoiceOver":true}"""
+
+  tweetByRestIdVars* = """{
+  "tweetId": "$1",
+  "includePromotedContent": false,
+  "withBirdwatchNotes": false,
+  "withVoice": false,
+  "withCommunity": false
+}""".replace(" ", "").replace("\n", "")
+
+  userByRestIdVars* = """{
+  "userId": "$1",
+  "withSafetyModeUserFields": true
+}""".replace(" ", "").replace("\n", "")
 
   communityTweetsVars* = """{
   "communityId": "$1", $2

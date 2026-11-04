@@ -42,6 +42,7 @@ proc getConfig*(path: string): (Config, parseCfg.Config) =
     enableRSSUserTweets: masterRss and cfg.get("Config", "enableRSSUserTweets", true),
     enableRSSUserReplies: masterRss and cfg.get("Config", "enableRSSUserReplies", true),
     enableRSSUserMedia: masterRss and cfg.get("Config", "enableRSSUserMedia", true),
+    enableRSSUserArticles: masterRss and cfg.get("Config", "enableRSSUserArticles", true),
     enableRSSSearch: masterRss and cfg.get("Config", "enableRSSSearch", true),
     enableRSSList: masterRss and cfg.get("Config", "enableRSSList", true),
     enableDebug: cfg.get("Config", "enableDebug", false),
